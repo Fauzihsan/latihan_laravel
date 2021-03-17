@@ -21,13 +21,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+    public function __construct()
     {
-        return view('home');
+        $this->middleware('auth');
     }
 
-    public function buku()
+    public function index()
     {
-        return view('buku');
+        $user = Auth::user();
+        return view('home', compact('user'));
     }
+
+    // public function index()
+    // {
+    //     return view('home');
+    // }
+
+    // public function buku()
+    // {
+    //     return view('buku');
+    // }
 }
